@@ -6,6 +6,7 @@ from datetime import datetime
 import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
+import graphviz
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import OneHotEncoder
@@ -155,6 +156,47 @@ log_entry = {
 st.session_state["log"].append(log_entry)
 df_log = pd.DataFrame(st.session_state["log"])
 df_log.to_csv(LOG_FILE, index=False)
+
+# ------------------- SIMULASI DIAGRAM SISTEM SENSOR -------------------
+st.markdown("## 🧠 Diagram Sistem Smart Energy Monitoring")
+
+# Diagram Flow Menggunakan Graphviz
+
+st.markdown("### 🔄 Alur Sistem")
+dot = graphviz.Digraph()
+dot.attr(rankdir="LR", size='8')
+
+# Node Sistem
+dot.node("Sensor", "📟 Sensor\n(Suhu & Cahaya)")
+dot.node("Mikro", "🧠 Mikrokontroler\n(ESP32 / Raspberry Pi)")
+dot.node("Model", "📊 Prediksi AI\n(Random Forest)")
+dot.node("Relay", "🔌 Modul Relay")
+dot.node("Perangkat", "💡 Perangkat Aktif\n(AC / TV / Lampu)")
+
+# Alur data
+dot.edges([
+    ("Sensor", "Mikro"),
+    ("Mikro", "Model"),
+    ("Model", "Relay"),
+    ("Relay", "Perangkat")
+])
+
+st.graphviz_chart(dot)
+
+# Deskripsi Sistem
+st.markdown("### 🔍 Komponen Sistem dan Fungsinya")
+st.markdown("""
+- **📟 Sensor Suhu & Cahaya**: Menggunakan DHT11/DHT22 dan LDR untuk membaca kondisi lingkungan.
+- **🧠 Mikrokontroler (ESP32 / Raspberry Pi)**: Mengirim data sensor ke model AI untuk diproses.
+- **📊 Model ML (Random Forest)**: Memprediksi status ON/OFF untuk perangkat berdasarkan suhu, jam, cahaya, cuaca, dll.
+- **🔌 Relay Modul**: Mengendalikan perangkat rumah secara otomatis berdasarkan output prediksi.
+- **💡 Perangkat**: Lampu, TV, dan AC yang dikontrol otomatis/manual.
+""")
+
+# (Optional) Menampilkan Gambar Diagram jika ada file
+if os.path.exists("diagram_smart_home.png"):
+    st.markdown("### 🖼️ Diagram Skematik Sistem (Gambar)")
+    st.image("diagram_smart_home.png", use_column_width=True)
 
 
 # ------------------- GRAFIK PREDIKSI 8 JAM -------------------
