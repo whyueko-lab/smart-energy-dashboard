@@ -18,3 +18,8 @@ Waktu,Suhu (°C),Cahaya (%),Penghuni,Cuaca,Hari Libur,AC,TV,Lampu,Daya Total (W)
 2025-06-28 18:48:30,30.5,7,Tidak,hujan,Tidak,OFF,OFF,OFF,250,475
 2025-06-28 18:49:10,26.0,37,Ya,cerah,Tidak,OFF,ON,ON,600,1140
 2025-06-28 18:49:50,26.5,5,Tidak,cerah,Ya,OFF,OFF,OFF,250,475
+2025-06-28 18:50:30,26.8,93,Ya,mendung,Tidak,OFF,ON,ON,600,1140
+2025-06-28 18:51:09,26.8,54,Tidak,hujan,Ya,OFF,OFF,OFF,250,475
+2025-06-28 18:51:50,30.9,88,Tidak,hujan,Ya,OFF,OFF,OFF,250,475
+2025-06-28 18:52:30,26.3,34,Tidak,cerah,Ya,OFF,OFF,OFF,250,475
+2025-06-28 18:53:12,26.7,97,Tidak,mendung,Tidak,OFF,OFF,OFF,250,475
