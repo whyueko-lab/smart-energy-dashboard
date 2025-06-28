@@ -1,4 +1,7 @@
 import streamlit as st
+st.set_page_config(page_title="Smart Energy Dashboard", layout="wide")
+
+# Import libraries
 import pandas as pd
 import random
 import os
@@ -15,8 +18,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 
 from streamlit_autorefresh import st_autorefresh
-
-st.set_page_config(page_title="Smart Energy Dashboard", layout="wide")
 
 # ------------------- CACHING MODEL TRAINING -------------------
 @st.cache_resource

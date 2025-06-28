@@ -1,4 +1,7 @@
 import streamlit as st
+st.set_page_config(page_title="Smart Energy Dashboard", layout="wide")
+
+# Import libraries
 import pandas as pd
 import random
 import os
@@ -15,8 +18,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 
 from streamlit_autorefresh import st_autorefresh
-
-st.set_page_config(page_title="Smart Energy Dashboard", layout="wide")
 
 # ------------------- CACHING MODEL TRAINING -------------------
 @st.cache_resource
@@ -204,20 +205,9 @@ st.markdown("### 🧾 Log Energi")
 st.dataframe(df_log, use_container_width=True)
 with open(LOG_FILE, "rb") as f:
     st.download_button("⬇️ Download Log CSV", f, file_name=LOG_FILE, mime="text/csv")
-    
-    # Statistik Log Biaya
-if not df_log.empty:
-    total_biaya = df_log["Biaya/Jam (Rp)"].sum()
-    rata_rata_biaya = df_log["Biaya/Jam (Rp)"].mean()
-
-    st.markdown("#### 💸 Statistik Biaya Energi dari Log")
-    colA, colB = st.columns(2)
-    colA.metric("Total Biaya (Rp)", f"Rp {total_biaya:,.0f}")
-    colB.metric("Rata-rata Biaya/Jam (Rp)", f"Rp {rata_rata_biaya:,.0f}")
 
 # ------------------- SIDEBAR ANALISIS MODEL -------------------
 st.sidebar.header("📈 Evaluasi Model")
-
 st.sidebar.metric("Akurasi AC", f"{acc_ac * 100:.2f}%")
 st.sidebar.metric("Akurasi TV", f"{acc_tv * 100:.2f}%")
 st.sidebar.metric("Akurasi Lampu", f"{acc_lampu * 100:.2f}%")
